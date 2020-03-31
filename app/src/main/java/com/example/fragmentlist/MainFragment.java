@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,6 @@ public class MainFragment extends Fragment implements Clickable {
     private String mParam1;
     private String mParam2;
 
-    public MainFragment() {
-        adapter = new MainAdapter();//???????????
-        adapter.clickable = clickable;
-    }
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
@@ -63,7 +60,13 @@ public class MainFragment extends Fragment implements Clickable {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_recycler_view);
+        adapter = new MainAdapter();
+        if (clickable == null){
+            Log.d("lol", "strange");
+        }
+        adapter.clickable = this;
         recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -78,6 +81,7 @@ public class MainFragment extends Fragment implements Clickable {
 
     @Override
     public void clickOnView(String name) {
-
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.clickOnView(name);
     }
 }

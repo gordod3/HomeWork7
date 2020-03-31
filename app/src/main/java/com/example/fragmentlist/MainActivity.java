@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements IInputFragment, Clickable {
+public class MainActivity extends AppCompatActivity implements IInputFragment{
 
     MainFragment mainFragment;
     InputFragment inputFragment;
@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements IInputFragment, C
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
         mainFragment = (MainFragment) fragmentManager.findFragmentById(R.id.recycle_fragment);
-        mainFragment.clickable = this;
         inputFragment = (InputFragment) fragmentManager.findFragmentById(R.id.input_fragment);
         inputFragment.listener = this;
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements IInputFragment, C
         mainFragment.fullList(number);
     }
 
-    @Override
+
     public void clickOnView(String name) {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         intent.putExtra("name", name);

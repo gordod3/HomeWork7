@@ -16,7 +16,7 @@ public class SecondActivity extends AppCompatActivity {
         intent = getIntent();
         FragmentManager manager = getSupportFragmentManager();
         detailsFragment = (DetailsFragment) manager.findFragmentById(R.id.fragmentName);
-        detailsFragment.name = intent.getStringExtra("name");
+        detailsFragment.nameField.setText(intent.getStringExtra("name"));
 
     }
 }

@@ -17,6 +17,9 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (clickable == null){
+                    Log.d("lol", "strange");
+                }
                 clickable.clickOnView(name);
             }
         });
